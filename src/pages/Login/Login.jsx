@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Form, Input, Button, Checkbox } from 'antd'
+import { Form, Input, Button, Checkbox , Row, Col} from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import './login.less'
-import logo from './images/logo.jpg'
+import logo from '../images/logo.jpg'
+import loginbanner from '../images/login-banner.png'
 const Item = Form.Item /* 不能写在import之前 */
 
 /* 
@@ -20,13 +21,20 @@ export default class Login extends Component {
     console.log(this.props);
     return (
       <div className="login">
+
         <header className="login-header">
           <img src={logo} alt="logo" className="logo"></img>
-          <h1>航海王主题-车辆售后服务管理系统</h1>
+          <h1>车辆售后服务管理系统</h1>
         </header>
-        <section className="login-content">
-          <h2>用户登录</h2>
+        <Row className = "row" >
+          <Col className = "rowImg" span={16}>
+          <img src={loginbanner} alt="loginbanner" className="loginbanner"></img>
+          </Col>
+          <Col className = "rowLogin" span={8}>
+          {/* <section className="login-content"> */}
+          <img src={logo} alt="logo" className="logo2"></img>
           <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={this.handelonFinish}>
+          <h2>用户登录</h2>
             <Item name="username" rules={[{ required: true, message: '请输入您的用户名!' },{pattern:/^[\w]{4,15}$/,message:"必须是英文数字或下划线，且长度在4~15位之间"}]}>
               <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" />
             </Item>
@@ -45,6 +53,7 @@ export default class Login extends Component {
               <a className="login-form-forgot" href="">
                 忘记密码？
               </a>
+            
             </Item>
 
             <Item>
@@ -57,7 +66,9 @@ export default class Login extends Component {
                
             </Item>
           </Form>
-        </section>
+        {/* </section> */}
+        </Col>
+        </Row>
       </div>
     )
   }
